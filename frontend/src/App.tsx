@@ -1,29 +1,20 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+
+import { Route, Routes } from "react-router-dom";
+
+import  Home  from './pages/Home'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [data, setData] = useState()
-
-
-
-  function buttonHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>){
-    e.preventDefault()
-    console.log(`clicked`)
-
-  }
-  
+  const [count, setCount] = useState(0);
+  const [data, setData] = useState();
 
   return (
-    <div className="App">
-      <h1 className="">Where would you like to live?</h1>
-      <form>
-        <input className='mr-2' placeholder='City'></input>
-        <button onClick={(e) => buttonHandler(e)}> Search </button>
-      </form>
-    </div>
-  )
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
