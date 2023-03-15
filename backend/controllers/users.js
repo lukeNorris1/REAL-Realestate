@@ -16,7 +16,11 @@ export const registerUser = async (req, res) => {
     const { email, password, firstName, lastName } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: "User already exists." });
+      return res.status(400).json({ message: "Email is already in use." });
+    } else if (!firstName) {
+      return res.status(400).json({ message: "Must include first name. " });
+    } else if (!lastName) {
+      return res.status(400).json({ message: "Must include last name. " });
     }
 
     const salt = await bcrypt.genSalt(12);

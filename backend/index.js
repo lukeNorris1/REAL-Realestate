@@ -11,7 +11,8 @@ import { Server } from 'socket.io';
 
 // // api functions and routes
 // import stockRoutes from './routes/stocks.js';
- import userRoutes from './routes/users.js';
+import userRoutes from './routes/users.js';
+import estateRoutes from './routes/estates.js';
 // import purchasedStockRoutes from './routes/purchased_stocks.js';
 // import actionLogRoutes from './routes/action_logs.js';
 // import transactionRoutes from './routes/transactions.js';
@@ -42,6 +43,7 @@ app.get('/', (req, res) => {
 });
 // app.use('/stocks', stockRoutes);
  app.use('/user', userRoutes);
+ app.use('/estate', estateRoutes);
 // app.use('/purchased', purchasedStockRoutes);
 // app.use('/logs', actionLogRoutes);
 // app.use('/transactions', transactionRoutes);
