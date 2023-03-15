@@ -2,7 +2,7 @@
 
 ## Overview
 
-Mock Stocks is a trading and investment platform simulation built with the [MERN](https://www.mongodb.com/mern-stack) stack and utilizing [Socket.IO](https://socket.io/) for real time price updates. It is not a reflection of the real world markets and stock performance. You can visit the site [here.](https://epic-swanson-085a9a.netlify.app/)
+Mock Stocks is a trading and investment platform simulation built with the [MERN](https://www.mongodb.com/mern-stack) stack and utilizing [Socket.IO](https://socket.io/) for real time price updates. It is not a reflection of the real world markets and stock performance. You can visit the site [here.](https://github.com/lukeNorris1/REAL-Realestate)
 
 
 ## Tech
@@ -26,6 +26,7 @@ This project utilizes the [MERN](https://www.mongodb.com/mern-stack) stack and [
 **Database**
 
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- [Mock Data](https://generatedata.com/generator)
 
 **Authentication**
 
