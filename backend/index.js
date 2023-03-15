@@ -9,13 +9,9 @@ import { fileURLToPath } from 'url';
 import { Server } from 'socket.io';
 
 
-// // api functions and routes
-// import stockRoutes from './routes/stocks.js';
+// api functions and routes
 import userRoutes from './routes/users.js';
 import estateRoutes from './routes/estates.js';
-// import purchasedStockRoutes from './routes/purchased_stocks.js';
-// import actionLogRoutes from './routes/action_logs.js';
-// import transactionRoutes from './routes/transactions.js';
 // import { tickers } from './web_sockets/tickers.js';
 
 // environment configuration
@@ -41,16 +37,8 @@ app.use(cors());
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
-// app.use('/stocks', stockRoutes);
- app.use('/user', userRoutes);
- app.use('/estate', estateRoutes);
-// app.use('/purchased', purchasedStockRoutes);
-// app.use('/logs', actionLogRoutes);
-// app.use('/transactions', transactionRoutes);
-// app.get('*', (req, res) => {
-//   res.status(404).sendFile(__dirname + '/not_found.html');
-// });
-
+app.use('/user', userRoutes);
+app.use('/estate', estateRoutes);
 
 
 // socket.io data emission
@@ -69,8 +57,3 @@ const PORT = process.env.PORT || 5000;
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => server.listen(PORT, () => console.log(`Node.JS Server Running on Port: ${PORT}`)))
   .catch((error) => console.log(`An error has occurred: ${error}`));
-
-
-
-//mongoose.set('useFindAndModify', false);
-
