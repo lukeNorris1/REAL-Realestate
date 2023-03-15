@@ -17,15 +17,22 @@ export const getEstateInfo = async (req, res) => {
   }
 };
 
-export const getEstateByID = async (req, res) => {
-    try {
-      const estateData = await Estate.findById(req.query.id)  
-  
-      res.status(200).json(estateData);
-    } catch (error) {
-      res.status(404).json({ message: "An error has occurred fetching the estate requested." });
+export const getEstateByCity = async (req, res) => {
+  try {
+    const filter = req.query.city;
+    const estateData = await Estate.find();
+
+    const finalEstates = estateData.filter((e) => e.city.includes(filter))
+
+    if (!estateData) {
+      return res.status(404).send(`No estates in city: ${req.query.city}`);
     }
-  };
+
+    res.status(200).json(finalEstates);
+  } catch (error) {
+    res.status(404).json({ message: "An error has occurred fetching the estate requested." });
+  }
+};
 
 export const newEstate = async (req, res) => {
   try {

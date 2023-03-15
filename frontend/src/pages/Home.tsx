@@ -8,7 +8,6 @@ export default function Home() {
 
   function buttonHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    console.log(`${searchText}`);
     navigate("/search/" + searchText, { replace: true });
   }
 
