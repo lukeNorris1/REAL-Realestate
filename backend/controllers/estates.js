@@ -19,12 +19,11 @@ export const getEstateInfo = async (req, res) => {
 
 export const getEstateByCity = async (req, res) => {
   try {
-    const filter = req.query.city;
     const estateData = await Estate.find();
-
-    const finalEstates = estateData.filter((e) => e.city.includes(filter))
-
-    if (!estateData) {
+    
+    const finalEstates = estateData.filter((e) => e.city.includes(req.query.city))
+    
+    if (!finalEstates) {
       return res.status(404).send(`No estates in city: ${req.query.city}`);
     }
 
