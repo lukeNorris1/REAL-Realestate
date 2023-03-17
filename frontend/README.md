@@ -1,3 +1,36 @@
+# REAL Realestate FRONTEND
 
-SVG source
-<!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+
+
+## Installation
+
+
+```bash
+npm install
+or
+yarn
+```
+
+## Usage
+
+For development
+```javascript
+npm run dev
+```
+For deployment
+```
+npm run build
+```
+
+## Source for SVGs
+Font Awesome Pro 6.3.0 by @fontawesome - License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc
+
+[Link](https://fontawesome.com)
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
