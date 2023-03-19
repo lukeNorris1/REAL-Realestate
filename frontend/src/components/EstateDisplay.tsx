@@ -63,7 +63,7 @@ export default function EstateDisplay() {
             case 4:
                 return images.estate4
             case 5:
-                return images.estate3
+                return images.estate5
         }
     }
 
@@ -81,6 +81,7 @@ export default function EstateDisplay() {
                   key={estate._id}
                 >
                   <div className="w-2/3 px-1 justify-center">
+                      <div>{`$` + ((estate.rooms * 220) + (estate.bathrooms * 10) + (estate.garage_spaces * 10)) + ` per week`}</div>
                     <div className="flex w-70 ">
                       <div>{`${estate.address}, ${estate.city}`}</div>
                     </div>

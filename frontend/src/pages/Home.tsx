@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Search from "../components/Search";
 
 export default function Home() {
   const [searchText, setSearchText] = useState("");
@@ -11,31 +12,31 @@ export default function Home() {
     navigate("/search/" + searchText, { replace: true });
   }
 
-  const onChangeHandler = (event:any) => {
+  const onChangeHandler = (event: any) => {
     setSearchText(event.target.value);
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="flex flex-col justify-center items-center">
-      <h1 className="text-5xl text-clip overflow-hidden">Where would you like to live?</h1>
-      <form className="mt-10 leading-5">
-        <input
-          inputMode="text"
-          className="mr-2 p-3 border-solid border-2 border-black rounded-md"
-          placeholder="City"
-          autoFocus
-          onChange={onChangeHandler}
-          value={searchText}
-        ></input>
-        <button className="br-8 hover:border-black" onClick={(e) => buttonHandler(e)}> Search </button>
-        
-      </form>
+    <div className="flex flex-col h-screen justify-center items-center">
+      <div className="flex items-center mb-4">
+        <h1 className="text-3xl font-bold">Where would you like to live?</h1>
       </div>
+    <Search/>
     </div>
   );
 }
 
+{
+  /* <div className="flex flex-col h-screen justify-center items-center">
+<div className="flex items-center mb-4">
+  <h1 className="text-3xl font-bold">Heading</h1>
+</div>
+<div className="flex items-center">
+  <input type="text" className="py-2 px-4 border border-gray-400 rounded-l-lg w-64 focus:outline-none focus:border-blue-500"/>
+  <button className="py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white rounded-r-lg">Search</button>
+</div>
+</div> */
+}
 
 // button {
 //   border-radius: 8px;
