@@ -1,18 +1,24 @@
-import React from 'react'
+import React from "react";
 import Hero from "../assets/RRHeor.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+
+  const navigate = useNavigate()
   return (
-    <header className="flex items-center justify-between bg-black text-white px-4 py-3">
-        <div className="flex items-center">
-          <img src={Hero} alt="Logo" className="h-8 w-auto mr-2" />
-          <h1 className="text-5xl text-clip">REAL Realestate</h1>
-        </div>
-        <div className="flex items-center">
-          <div className="bg-gray-300 rounded-full h-8 w-8"></div>
-          <div className="bg-gray-300 rounded-full h-8 w-8 ml-2"></div>
-          <div className="bg-gray-300 rounded-full h-8 w-8 ml-2"></div>
-        </div>
-      </header>
-  )
+    <header className="flex items-center justify-between bg-white text-black px-4 py-3">
+      <div className="flex items-center hover:cursor-pointer" onClick={() => navigate("/", { replace: true })}>
+        <img src={Hero} alt="Logo" className="h-8 w-auto mr-2" />
+        <h1 className="text-5xl text-clip">REAL Realestate</h1>
+      </div>
+      <div className="flex">
+  <div className="p-2 inline-block hover:cursor-pointer" onClick={() => navigate("/signup")}>
+    <span>Sign Up</span>
+  </div>
+  <div className="p-2 inline-block hover:cursor-pointer" onClick={() => navigate("/signin")}>
+    <span>Sign In</span>
+  </div>
+</div>
+    </header>
+  );
 }
