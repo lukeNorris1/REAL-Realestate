@@ -24,6 +24,7 @@ export default function EstateDisplay() {
       bathrooms: number;
       garage_spaces: number;
       date: Date;
+      cost: number;
     };
   
     useEffect(() => {

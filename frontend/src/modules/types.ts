@@ -7,4 +7,5 @@ export interface cityData {
   bathrooms: number;
   garage_spaces: number;
   date: Date;
+  cost: number;
 };

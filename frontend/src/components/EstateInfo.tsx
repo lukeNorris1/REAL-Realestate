@@ -24,9 +24,7 @@ export default function EstateInfo(props:Props) {
       <div>
         <p className="text-lg font-weight-500">
           {`$` +
-          (estate.rooms * 220 +
-            estate.bathrooms * 10 +
-            estate.garage_spaces * 10) +
+          (estate.cost) +
           ` per week`}
           </p>
       </div>
