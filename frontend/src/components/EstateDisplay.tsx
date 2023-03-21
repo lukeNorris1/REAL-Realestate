@@ -25,6 +25,7 @@ export default function EstateDisplay() {
       garage_spaces: number;
       date: Date;
       cost: number;
+      agent_name: string;
     };
   
     useEffect(() => {
@@ -81,9 +82,9 @@ export default function EstateDisplay() {
                   <div className="flex box-content border-[1px] border-gray-400 w-full">
                     <EstateInfo estate={estate} other={""} />
                     <span className="m-auto border-[1px] border-gray-100 border-solid mr-2 h-[80%] "/>
-                    <div className="w-[200px]">
-                      <h1>Estate Agent: sdads</h1>
-                      <p>Estate location</p>
+                    <div className="w-[200px] mt-4">
+                      <h1>{estate.agent_name}</h1>
+                      <p className="text-gray-400 text-sm">{`Real Estate ${estate.city}`}</p>
                       <img src={""} alt={`estate logo`} />
                     </div>
                   </div>

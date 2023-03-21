@@ -8,4 +8,5 @@ export interface cityData {
   garage_spaces: number;
   date: Date;
   cost: number;
+  agent_name: string;
 };
