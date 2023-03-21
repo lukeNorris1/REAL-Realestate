@@ -1,4 +1,5 @@
-export type cityData = {
+export interface cityData {
+  [x: string]: any;
   _id: string;
   address: string;
   city: string;

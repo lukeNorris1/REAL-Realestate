@@ -63,20 +63,30 @@ export default function EstateDisplay() {
 
   return (
     <div className="flex flex-col items-center justify-between">
-        <Search />
+        
         {cityD == undefined ? (
           <div>Loading...</div>
         ) : (
-          <div className="bg-red-200 mt-2 min-[700px]:w-2/5 max-[900px]:w-4/5 hover:cursor-pointer">
+          <div className=" mt-2 min-[700px]:w-2/5 min-[900px]:w-[1022px] hover:cursor-pointer">
             {cityD.map((estate, index) => {
               return (
                 <div
-                  className="flex flex-row py-5 border-b-2 border-gray-500"
+                  className="flex flex-row border-gray-500 my-[20px] bg-white"
                   key={estate._id}
                 >
-                  <EstateInfo estate={estate} />
+                  <div className="flex min-w-[260px] h-[174px]" >
+                    <img className="object-fill max-w-[260px] max-h-[174px] w-full" src={imageHandler(estate.rooms)!.img} alt={imageHandler(estate.rooms)!.link}/>
+                  </div>
+                  <div className="flex box-content border-[1px] border-gray-400 w-full">
+                    <EstateInfo estate={estate} other={""} />
+                    <span className="m-auto border-[1px] border-gray-100 border-solid mr-2 h-[80%] "/>
+                    <div className="w-[200px]">
+                      <h1>Estate Agent: sdads</h1>
+                      <p>Estate location</p>
+                      <img src={""} alt={`estate logo`} />
+                    </div>
+                  </div>
                  
-                  <div className="flex flex-1 justify-center items-center bg-gray-200"><img className="object-cover" src={imageHandler(estate.rooms)!.img} alt={imageHandler(estate.rooms)!.link}/></div>
                 </div>
               );
             })}
