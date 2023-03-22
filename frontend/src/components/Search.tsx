@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Search() {
-  const [searchText, setSearchText] = useState("");
+  const urlParams = useParams();
+  const [searchText, setSearchText] = useState<string>(urlParams.city || "");
+
+
+  console.log(urlParams.city)
+  
+
+
 
   const navigate = useNavigate();
 
@@ -25,6 +32,7 @@ export default function Search() {
             className="block p-2.5 w-full z-20 text-sm rounded-l-lg rounded-r-lg border-l-black border border-black  dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
             placeholder="Search"
             onChange={e => onChangeHandler(e)}
+            value={searchText}
           />
           <button
             className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-white rounded-r-lg border border-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300"

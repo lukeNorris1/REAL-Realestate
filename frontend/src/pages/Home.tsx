@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen justify-center items-center">
       <div className="flex items-center mb-4">
-        <h1 className="text-3xl font-bold">Where would you like to live?</h1>
+        <h1 className="text-[50px] font-bold">Where would you like to live?</h1>
       </div>
     <Search/>
     </div>
