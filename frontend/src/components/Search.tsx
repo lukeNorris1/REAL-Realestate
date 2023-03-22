@@ -2,16 +2,10 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function Search() {
+  const navigate = useNavigate();
   const urlParams = useParams();
   const [searchText, setSearchText] = useState<string>(urlParams.city || "");
 
-
-  console.log(urlParams.city)
-  
-
-
-
-  const navigate = useNavigate();
 
   function buttonHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
