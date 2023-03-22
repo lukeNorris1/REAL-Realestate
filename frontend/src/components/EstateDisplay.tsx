@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import images from "../assets/estates/index";
 import EstateInfo from "./EstateInfo";
@@ -6,8 +6,11 @@ import { cityData } from "../modules/types";
 
 export default function EstateDisplay() {
   const [cityD, setcityD] = useState<cityData[]>();
+  const [pageNum, setPageNum] = useState(1)
   const urlParams = useParams();
   const navigate = useNavigate();
+
+  const cityLength = Math.max(cityD?.length || 14, 14);
 
   const dev = process.env.NODE_ENV !== "production";
   const server = dev ? "" : "https://your_deployment.server.com";
@@ -16,7 +19,9 @@ export default function EstateDisplay() {
     method: `GET`,
   };
 
+
   useEffect(() => {
+    setPageNum(1)
     // fetch data
     const dataFetch = async () => {
       const data = await (
@@ -60,11 +65,11 @@ export default function EstateDisplay() {
           </div>
         </div>
       ) : (
-        <div className=" mt-2 min-[700px]:w-2/5 min-[900px]:w-[1022px] hover:cursor-pointer">
-          {cityD.map((estate, index) => {
+        <div className=" mt-2 min-[700px]:w-2/5 min-[900px]:w-[1022px]">
+          {cityD?.filter((e, index) => index > (pageNum - 1) * 15 && index < pageNum * 15).map((estate, index) => {
             return (
               <div
-                className="flex flex-row border-gray-500 my-[20px] bg-white hover:drop-shadow-xl"
+                className="flex flex-row border-gray-500 my-[20px] bg-white hover:drop-shadow-xl hover:cursor-pointer"
                 key={estate._id}
                 onClick={() =>
                   navigate(`/:${estate.address}`, { state: estate })
@@ -89,6 +94,29 @@ export default function EstateDisplay() {
               </div>
             );
           })}
+          <div className="flex flex-row justify-center items-align truncate ">
+            {cityLength > 4 * 14 ? (
+              <div className="flex">
+                {"<"}
+                {Array.from({ length: cityLength }, (_, index) => {
+                  return index < 4 ? (
+                    <div key={index} className="flex mx-1 mb-10 hover:cursor-pointer w-[20px] bg-black text-white justify-center items-align" onClick={() => setPageNum(index + 1)}>
+                      {pageNum == index + 1 ? <b>{index + 1}</b> : <>{index + 1}</>}
+                    </div>
+                  ) : (
+                    null
+                  );
+                })}
+                {">"}
+              </div>
+            ) : Array.from({ length: Math.ceil(cityLength / 14) }, (_, index) => {
+              return  (
+                <div key={index} className="flex mx-1 mb-10 hover:cursor-pointer w-[20px] bg-black text-white justify-center items-align" onClick={() => setPageNum(index + 1)}>
+                  {pageNum == index + 1 ? <b>{index + 1}</b> : <>{index + 1}</>}
+                </div>
+              )
+            })}
+          </div>
         </div>
       )}
     </div>

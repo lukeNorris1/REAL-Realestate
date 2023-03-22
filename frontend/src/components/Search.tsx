@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function Search() {
@@ -16,6 +16,8 @@ export default function Search() {
   const onChangeHandler = (event: any) => {
     setSearchText(event.target.value);
   };
+
+
 
   return (
     <form className="w-1/5" onSubmit={e => buttonHandler(e)}>
