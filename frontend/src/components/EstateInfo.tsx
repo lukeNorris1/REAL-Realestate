@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { cityData } from "../modules/types";
 
 type Props = {
@@ -34,8 +35,8 @@ export default function EstateInfo(props: Props) {
       <div className="flex flex-row justify-start items-center pt-1 pb-2 ">
         {Array.from({ length: 3 }, (_, index) => {
           return (
-            <>
-              <div className="ml-1 mr-2">{getHouseStat(index)}</div>
+            <Fragment key={index}>
+              <div key={index} className="ml-1 mr-2">{getHouseStat(index)}</div>
               <svg
                 width={svgWidth}
                 xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +45,7 @@ export default function EstateInfo(props: Props) {
               >
                 <path d={svgs[index]} />
               </svg>
-            </>
+            </Fragment>
           );
         })}
       </div>
