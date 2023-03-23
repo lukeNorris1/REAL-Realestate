@@ -4,6 +4,7 @@ import estate_3 from'./estate_3.jpg'
 import estate_4 from'./estate_4.jpg'
 import estate_5 from'./estate_5.jpg'
 
+
 const images = {
     estate1: {
         img: estate_1,

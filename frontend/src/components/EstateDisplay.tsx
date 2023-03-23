@@ -10,7 +10,7 @@ export default function EstateDisplay() {
   const urlParams = useParams();
   const navigate = useNavigate();
 
-  const cityLength = Math.max(cityD?.length || 14, 14);
+  const cityListLength = Math.max(cityD?.length || 14, 14);
 
   const dev = process.env.NODE_ENV !== "production";
   const server = dev ? "" : "https://your_deployment.server.com";
@@ -48,6 +48,17 @@ export default function EstateDisplay() {
         return images.estate4;
       case 5:
         return images.estate5;
+    }
+  }
+
+  function handleArrowClick(direction: string){
+    switch (direction){
+      case "-":
+        if (pageNum > 1) setPageNum((number) => number - 1)
+        break;
+      case "+":
+        if (pageNum < 4)setPageNum((number) => number + 1)
+        break;
     }
   }
 
@@ -95,24 +106,24 @@ export default function EstateDisplay() {
             );
           })}
           <div className="flex flex-row justify-center items-align truncate ">
-            {cityLength > 4 * 14 ? (
+            {cityListLength > 4 * 14 ? (
               <div className="flex">
-                {"<"}
-                {Array.from({ length: cityLength }, (_, index) => {
+                <div onClick={() => handleArrowClick("-")}>{"<"}</div>
+                {Array.from({ length: cityListLength }, (_, index) => {
                   return index < 4 ? (
                     <div key={index} className="flex mx-1 mb-10 hover:cursor-pointer w-[20px] bg-black text-white justify-center items-align" onClick={() => setPageNum(index + 1)}>
-                      {pageNum == index + 1 ? <b>{index + 1}</b> : <>{index + 1}</>}
+                      {pageNum == index + 1 ? <div>{index + 1}</div> : <>{index + 1}</>}
                     </div>
                   ) : (
                     null
                   );
                 })}
-                {">"}
+                <div onClick={() => handleArrowClick("+")}>{">"}</div>
               </div>
-            ) : Array.from({ length: Math.ceil(cityLength / 14) }, (_, index) => {
+            ) : Array.from({ length: Math.ceil(cityListLength / 14) }, (_, index) => {
               return  (
                 <div key={index} className="flex mx-1 mb-10 hover:cursor-pointer w-[20px] bg-black text-white justify-center items-align" onClick={() => setPageNum(index + 1)}>
-                  {pageNum == index + 1 ? <b>{index + 1}</b> : <>{index + 1}</>}
+                  {pageNum == index + 1 ? <div>{index + pageNum}</div> : <>{index + pageNum}</>}
                 </div>
               )
             })}

@@ -35,6 +35,10 @@ Font Awesome Pro 6.3.0 by @fontawesome - License - https://fontawesome.com/licen
 
 https://pixabay.com/photos/townhouses-city-architecture-facade-7008193/
 
+### Image size reduced using
+
+[Link](https://tinypng.com/)
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
