@@ -1,5 +1,5 @@
 import images from "../assets/estates/estate_whole/index";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Slider = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -12,47 +12,47 @@ const Slider = () => {
     setCurrentImage(currentImage === 0 ? images.length - 1 : currentImage - 1);
   };
 
+
   return (
-    <div className="relative w-full h-[600px]">
-      <div className="grid grid-cols-3">
-        <div className="col-span-1">
-            <img
-                src={images[currentImage === 0 ? images.length - 1 : currentImage - 1].src}
-                alt={images[currentImage].alt}
-                className="opacity-50 h-full w-full object-cover"
-            />
-        </div>
-        <div className="col-span-1 flex justify-center items-center">
-            <img
-                src={images[currentImage].src}
-                alt={images[currentImage].alt}
-                className="h-full w-full object-cover"
-            />
-        </div>
-        <div className="col-span-1">
-            <img 
-                src={images[(currentImage + 1) % images.length].src}
-                alt={images[currentImage].alt}
-                className="opacity-50 h-full w-full object-cover"
-                />
-        </div>
-      </div>
-      
-      <div className="absolute bottom-4 w-full left-0 transform -translate-y-1/2 w-full flex justify-center opacity-80">
+<div className="relative min-w-full w-full">
+  <div className="grid grid-cols-3">
+    <div className="col-span-1">
+      <img
+        src={images[currentImage === 0 ? images.length - 1 : currentImage - 1].src}
+        alt={images[currentImage].alt}
+        className="opacity-50 h-full w-full object-cover"
+      />
+    </div>
+    <div className="col-span-1 flex justify-center items-center">
+      <div className="relative h-full">
         <button
-          onClick={previousImage}
-          className="bg-white px-4 mx-20 py-2 rounded-md text-3xl"
+          className="absolute top-0 bottom-0  left-1 z-1"
+          onClick={() => previousImage()}
         >
-          {"←"}
+         <i className='fas fa-angle-left text-white text-6xl'></i>
         </button>
+        <img
+          src={images[currentImage].src}
+          alt={images[currentImage].alt}
+          className="h-full w-full object-cover"
+        />
         <button
-          onClick={nextImage}
-          className="bg-white px-4 mx-20 py-2 rounded-md text-3xl"
+          className="absolute top-0 bottom-0 right-1 z-1"
+          onClick={() => nextImage()}
         >
-          {"→"}
+          <i className='fas fa-angle-right text-white text-6xl'></i>
         </button>
       </div>
     </div>
+    <div className="col-span-1">
+      <img 
+        src={images[(currentImage + 1) % images.length].src}
+        alt={images[currentImage].alt}
+        className="opacity-50 h-full w-full object-cover"
+      />
+    </div>
+  </div>
+</div>
   );
 };
 
