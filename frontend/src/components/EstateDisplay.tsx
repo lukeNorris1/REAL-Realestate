@@ -6,7 +6,7 @@ import { cityData } from "../modules/types";
 
 export default function EstateDisplay() {
   const [cityD, setcityD] = useState<cityData[]>();
-  const [pageNum, setPageNum] = useState(1)
+  const [pageNum, setPageNum] = useState(1);
   const urlParams = useParams();
   const navigate = useNavigate();
 
@@ -19,9 +19,8 @@ export default function EstateDisplay() {
     method: `GET`,
   };
 
-
   useEffect(() => {
-    setPageNum(1)
+    setPageNum(1);
     // fetch data
     const dataFetch = async () => {
       const data = await (
@@ -51,13 +50,13 @@ export default function EstateDisplay() {
     }
   }
 
-  function handleArrowClick(direction: string){
-    switch (direction){
+  function handleArrowClick(direction: string) {
+    switch (direction) {
       case "-":
-        if (pageNum > 1) setPageNum((number) => number - 1)
+        if (pageNum > 1) setPageNum((number) => number - 1);
         break;
       case "+":
-        if (pageNum < 4)setPageNum((number) => number + 1)
+        if (pageNum < 4) setPageNum((number) => number + 1);
         break;
     }
   }
@@ -77,56 +76,79 @@ export default function EstateDisplay() {
         </div>
       ) : (
         <div className=" mt-2 min-[700px]:w-2/5 min-[900px]:w-[1022px]">
-          {cityD?.filter((e, index) => index > (pageNum - 1) * 15 && index < pageNum * 15).map((estate, index) => {
-            return (
-              <div
-                className="flex flex-row border-gray-500 my-[20px] bg-white hover:drop-shadow-xl hover:cursor-pointer"
-                key={estate._id}
-                onClick={() =>
-                  navigate(`/:${estate.address}`, { state: estate })
-                }
-              >
-                <div className="flex min-w-[260px] h-[174px]">
-                  <img
-                    className="object-fill max-w-[260px] max-h-[174px] w-full"
-                    src={imageHandler(estate.rooms)!.img}
-                    alt={imageHandler(estate.rooms)!.link}
-                  />
-                </div>
-                <div className="flex box-content border-[1px] border-gray-400 w-full">
-                  <EstateInfo estate={estate} other={""} />
-                  <span className="m-auto border-[1px] border-gray-100 border-solid mr-2 h-[80%] " />
-                  <div className="w-[200px] mt-4">
-                    <h1 className="">{estate.agent_name}</h1>
-                    <p className="text-gray-400 text-sm">{`Real Estate ${estate.city}`}</p>
-                    <img src={""} alt={`estate logo`} />
+          {cityD
+            ?.filter(
+              (e, index) => index > (pageNum - 1) * 15 && index < pageNum * 15
+            )
+            .map((estate, index) => {
+              return (
+                <div
+                  className="flex flex-row border-gray-500 my-[20px] bg-white hover:drop-shadow-xl hover:cursor-pointer"
+                  key={estate._id}
+                  onClick={() =>
+                    navigate(`/:${estate.address}`, { state: estate })
+                  }
+                >
+                  <div className="flex min-w-[260px] h-[174px]">
+                    <img
+                      className="object-fill max-w-[260px] max-h-[174px] w-full"
+                      src={imageHandler(estate.rooms)!.img}
+                      alt={imageHandler(estate.rooms)!.link}
+                    />
+                  </div>
+                  <div className="flex box-content border-[1px] border-gray-400 w-full">
+                    <EstateInfo estate={estate} other={""} />
+                    <span className="m-auto border-[1px] border-gray-100 border-solid mr-2 h-[80%] " />
+                    <div className="w-[200px] mt-4">
+                      <h1 className="">{estate.agent_name}</h1>
+                      <p className="text-gray-400 text-sm">{`${estate.city} Real Estate`}</p>
+                      <img src={""} alt={`estate logo`} />
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
           <div className="flex flex-row justify-center items-align truncate ">
             {cityListLength > 4 * 14 ? (
               <div className="flex">
                 <div onClick={() => handleArrowClick("-")}>{"<"}</div>
                 {Array.from({ length: cityListLength }, (_, index) => {
                   return index < 4 ? (
-                    <div key={index} className="flex mx-1 mb-10 hover:cursor-pointer w-[20px] bg-black text-white justify-center items-align" onClick={() => setPageNum(index + 1)}>
-                      {pageNum == index + 1 ? <div>{index + 1}</div> : <>{index + 1}</>}
+                    <div
+                      key={index}
+                      className="flex mx-1 mb-10 hover:cursor-pointer w-[20px] bg-black text-white justify-center items-align"
+                      onClick={() => setPageNum(index + 1)}
+                    >
+                      {pageNum == index + 1 ? (
+                        <div>{index + 1}</div>
+                      ) : (
+                        <>{index + 1}</>
+                      )}
                     </div>
-                  ) : (
-                    null
-                  );
+                  ) : null;
                 })}
                 <div onClick={() => handleArrowClick("+")}>{">"}</div>
               </div>
-            ) : Array.from({ length: Math.ceil(cityListLength / 14) }, (_, index) => {
-              return  (
-                <div key={index} className="flex mx-1 mb-10 hover:cursor-pointer w-[20px] bg-black text-white justify-center items-align" onClick={() => setPageNum(index + 1)}>
-                  {pageNum == index + 1 ? <div>{index + pageNum}</div> : <>{index + pageNum}</>}
-                </div>
+            ) : (
+              Array.from(
+                { length: Math.ceil(cityListLength / 14) },
+                (_, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="flex mx-1 mb-10 hover:cursor-pointer w-[20px] bg-black text-white justify-center items-align"
+                      onClick={() => setPageNum(index + 1)}
+                    >
+                      {pageNum == index + 1 ? (
+                        <div>{index + pageNum}</div>
+                      ) : (
+                        <>{index + pageNum}</>
+                      )}
+                    </div>
+                  );
+                }
               )
-            })}
+            )}
           </div>
         </div>
       )}

@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { useLocation } from "react-router-dom";
 import EstateInfo from "../components/EstateInfo";
 import Header from "../components/Header";
+import Inspection from "../components/Inspection";
 import Slider from "../components/Slider";
 import { cityData } from "../modules/types";
 
@@ -63,7 +64,7 @@ export default function EstatePage() {
               <hr className="mx-auto my-2 border-t border-gray-300 w-[90%]" />
               <div>
                 <h1 className="font-bold">Welcome to {estate.city}</h1>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+                <p className="mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
                    industry. Lorem Ipsum has been the industry's standard dummy text
                     ever since the 1500s, when an unknown printer took a galley of type
                      and scrambled it to make a type specimen book. It has survived not
@@ -73,6 +74,18 @@ export default function EstatePage() {
                          and more recently with desktop publishing software like Aldus PageMaker 
                          including versions of Lorem Ipsum.
                 </p>
+                <p className="mt-2">To make an inspection please message {estate.agent_name} of {estate.city} Real Estate</p>
+              </div>
+              <hr className="mx-auto my-2 border-t border-gray-300 w-[90%]" />
+              <div className="mb-16">
+                <h1 className="text-lg font-bold mb-2">Inspections</h1>
+                {Array.from({ length: Math.floor(Math.random() * 4) }, (_, index) => {
+                  return (
+                    <Fragment key={index}>
+                      <Inspection/>
+                    </Fragment>
+                  )
+                })}
               </div>
             </div>
           </div>
