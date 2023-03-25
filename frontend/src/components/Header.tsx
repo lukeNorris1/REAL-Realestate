@@ -11,14 +11,6 @@ export default function Header() {
         <img src={Hero} alt="Logo" className="h-8 w-auto mr-2" />
         <h1 className="text-5xl text-clip">REAL Realestate</h1>
       </div>
-      <div className="flex">
-  <div className="p-2 inline-block hover:cursor-pointer" onClick={() => navigate("/signup")}>
-    <span>Sign Up</span>
-  </div>
-  <div className="p-2 inline-block hover:cursor-pointer" onClick={() => navigate("/signin")}>
-    <span>Sign In</span>
-  </div>
-</div>
     </header>
   );
 }

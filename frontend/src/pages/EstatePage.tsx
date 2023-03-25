@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import EstateInfo from "../components/EstateInfo";
 import Header from "../components/Header";
@@ -8,6 +8,7 @@ import { cityData } from "../modules/types";
 import realtors from "../assets/estates/realtors";
 
 export default function EstatePage() {
+  const [total, setTotal] = useState(3);
   const estate: cityData = useLocation().state;
   const svgWidth = 18;
 
@@ -22,12 +23,26 @@ export default function EstatePage() {
     else if (index == 1) return estate.garage_spaces;
     else if (index == 2) return estate.bathrooms;
   }
+  
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 640) { // Tailwind's mobile breakpoint is 640px
+        setTotal(1);
+      } else {
+        setTotal(3);
+      }
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="">
       <Header />
       <div className="">
-        <Slider />
+        <Slider totalImages={total} />
       </div>
       <div className="flex justify-center">
         <div className="grid grid-cols-10 w-[1000px] ">
@@ -80,7 +95,7 @@ export default function EstatePage() {
               <hr className="mx-auto my-2 border-t border-gray-300 w-[90%]" />
               <div className="mb-16">
                 <h1 className="text-lg font-bold mb-2">Inspections</h1>
-                {Array.from({ length: Math.floor(Math.random() * 4) }, (_, index) => {
+                {Array.from({ length: Math.floor(Math.random() * (6 - 1) + 1) }, (_, index) => {
                   return (
                     <Fragment key={index}>
                       <Inspection/>
@@ -90,7 +105,7 @@ export default function EstatePage() {
               </div>
             </div>
           </div>
-          <div className="col-span-3 bg-gray-400 min-h-[400px] flex flex-col items-center">
+          <div className="col-span-3 bg-gray-400 min-h-[400px] min-h-[350px] flex flex-col items-center">
             <p className="bg-blue-800 min-w-full text-xl text-white text-center py-2">Real Real Estate</p>
             <div className="flex flex-col items-center space-y-2">
               <h1 className="mt-2">{estate.agent_name}</h1>
