@@ -61,7 +61,7 @@ const Slider = (props: props) => {
     </>) : 
     <>
       <div className="col-span-3 flex justify-center items-center">
-          <div className="relative h-full">
+          <div className="relative h-[400px] w-full">
             <button
               className="absolute top-0 bottom-0  left-1 z-1"
               onClick={() => previousImage()}
@@ -88,3 +88,4 @@ const Slider = (props: props) => {
 };
 
 export default Slider;
+

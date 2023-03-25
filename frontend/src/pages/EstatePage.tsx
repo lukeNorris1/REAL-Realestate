@@ -23,19 +23,19 @@ export default function EstatePage() {
     else if (index == 1) return estate.garage_spaces;
     else if (index == 2) return estate.bathrooms;
   }
-  
 
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth < 640) { // Tailwind's mobile breakpoint is 640px
+      if (window.innerWidth < 1100) {
+        // Tailwind's mobile breakpoint is 640px
         setTotal(1);
       } else {
         setTotal(3);
       }
     }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -46,7 +46,7 @@ export default function EstatePage() {
       </div>
       <div className="flex justify-center">
         <div className="grid grid-cols-10 w-[1000px] ">
-          <div className="col-span-7 min-h-[400px]">
+          <div className="md:col-span-7 col-span-10 col-span-7 min-h-[400px]">
             <div className="mx-4 mt-4">
               <div>
                 <p className="text-lg font-bold">
@@ -80,49 +80,76 @@ export default function EstatePage() {
               <hr className="mx-auto my-2 border-t border-gray-300 w-[90%]" />
               <div>
                 <h1 className="font-bold">Welcome to {estate.city}</h1>
-                <p className="mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
-                   industry. Lorem Ipsum has been the industry's standard dummy text
-                    ever since the 1500s, when an unknown printer took a galley of type
-                     and scrambled it to make a type specimen book. It has survived not
-                      only five centuries, but also the leap into electronic typesetting,
-                       remaining essentially unchanged. It was popularised in the 1960s
-                        with the release of Letraset sheets containing Lorem Ipsum passages,
-                         and more recently with desktop publishing software like Aldus PageMaker 
-                         including versions of Lorem Ipsum.
+                <p className="mt-2">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum
+                  passages, and more recently with desktop publishing software
+                  like Aldus PageMaker including versions of Lorem Ipsum.
                 </p>
-                <p className="mt-2">To make an inspection please message {estate.agent_name} of {estate.city} Real Estate</p>
+                <p className="mt-2">
+                  To make an inspection please message {estate.agent_name} of{" "}
+                  {estate.city} Real Estate
+                </p>
               </div>
               <hr className="mx-auto my-2 border-t border-gray-300 w-[90%]" />
               <div className="mb-16">
                 <h1 className="text-lg font-bold mb-2">Inspections</h1>
-                {Array.from({ length: Math.floor(Math.random() * (6 - 1) + 1) }, (_, index) => {
-                  return (
-                    <Fragment key={index}>
-                      <Inspection/>
-                    </Fragment>
-                  )
-                })}
+                {Array.from(
+                  { length: Math.floor(Math.random() * (6 - 1) + 1) },
+                  (_, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <Inspection />
+                      </Fragment>
+                    );
+                  }
+                )}
               </div>
             </div>
           </div>
-          <div className="col-span-3 bg-gray-400 min-h-[400px] min-h-[350px] flex flex-col items-center">
-            <p className="bg-blue-800 min-w-full text-xl text-white text-center py-2">Real Real Estate</p>
+          <div className="md:col-span-3 col-span-10 bg-gray-200 min-h-[400px] min-h-[350px] ">
+            <div className="flex flex-col items-center">
+            <p className="bg-blue-800 min-w-full text-xl text-white text-center py-2">
+              Real Real Estate
+            </p>
             <div className="flex flex-col items-center space-y-2">
               <h1 className="mt-2">{estate.agent_name}</h1>
-              <p className="text-white text-sm">{`Real Estate ${estate.city}`}</p>
-              <img className="w-36 h-36 object-cover rounded-full border-2 border-gray-300" src={realtors[0].src} alt={`estate logo`} />
-              <Link className="bg-blue-600 text-white p-2 rounded-lg hover:text-white hover:bg-blue-400"
-            to='#'
-            onClick={(e) => {
-                window.location.href = `mailto:${estate.agent_name.replace(/\s/g, '')}@${estate.city.replace(/\s/g, '')}RealEstate.com`;
-                e.preventDefault();
-            }}
-        >
-            <div className="flex space-x-2 w-[120px] ">
-              <svg width={25} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">)<path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
-              <p className="">Contact Us</p>
+              <p className="text-gray-500 text-sm">{`Real Estate ${estate.city}`}</p>
+              <img
+                className="w-36 h-36 object-cover rounded-full border-2 border-gray-300"
+                src={realtors[0].src}
+                alt={`estate logo`}
+              />
+              <Link
+                className="bg-blue-600 text-white p-2 rounded-lg hover:text-white hover:bg-blue-400"
+                to="#"
+                onClick={(e) => {
+                  window.location.href = `mailto:${estate.agent_name.replace(
+                    /\s/g,
+                    ""
+                  )}@${estate.city.replace(/\s/g, "")}RealEstate.com`;
+                  e.preventDefault();
+                }}
+              >
+                <div className="flex space-x-2 w-[120px] ">
+                  <svg
+                    width={25}
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    )
+                    <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" />
+                  </svg>
+                  <p className="">Contact Us</p>
+                </div>
+              </Link>
             </div>
-        </Link>
             </div>
           </div>
         </div>
