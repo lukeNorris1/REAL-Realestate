@@ -1,10 +1,11 @@
 import React, { Fragment } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import EstateInfo from "../components/EstateInfo";
 import Header from "../components/Header";
 import Inspection from "../components/Inspection";
 import Slider from "../components/Slider";
 import { cityData } from "../modules/types";
+import realtors from "../assets/estates/realtors";
 
 export default function EstatePage() {
   const estate: cityData = useLocation().state;
@@ -89,10 +90,25 @@ export default function EstatePage() {
               </div>
             </div>
           </div>
-          <div className="col-span-3 bg-gray-400 min-h-[400px]">
-            <h1 className="">{estate.agent_name}</h1>
-            <p className="text-white text-sm">{`Real Estate ${estate.city}`}</p>
-            <img src={""} alt={`estate logo`} />
+          <div className="col-span-3 bg-gray-400 min-h-[400px] flex flex-col items-center">
+            <p className="bg-blue-800 min-w-full text-xl text-white text-center py-2">Real Real Estate</p>
+            <div className="flex flex-col items-center space-y-2">
+              <h1 className="mt-2">{estate.agent_name}</h1>
+              <p className="text-white text-sm">{`Real Estate ${estate.city}`}</p>
+              <img className="w-36 h-36 object-cover rounded-full border-2 border-gray-300" src={realtors[0].src} alt={`estate logo`} />
+              <Link className="bg-blue-600 text-white p-2 rounded-lg hover:text-white hover:bg-blue-400"
+            to='#'
+            onClick={(e) => {
+                window.location.href = `mailto:${estate.agent_name.replace(/\s/g, '')}@${estate.city.replace(/\s/g, '')}RealEstate.com`;
+                e.preventDefault();
+            }}
+        >
+            <div className="flex space-x-2 w-[120px] ">
+              <svg width={25} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">)<path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+              <p className="">Contact Us</p>
+            </div>
+        </Link>
+            </div>
           </div>
         </div>
       </div>
