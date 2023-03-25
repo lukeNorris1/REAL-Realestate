@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function Search() {
+type props = {
+  width?: number,
+  height?: number
+}
+
+export default function Search(props: props) {
   const navigate = useNavigate();
   const urlParams = useParams();
   const [searchText, setSearchText] = useState<string>(urlParams.city || "");
+  const [height, setHeight] = useState(props.height || 50)
+  const [width, setWidth] = useState(props.width || 500)
+
+
+  console.log(`height, ${height}, Width: ${width}`)
 
 
   function buttonHandler(e: React.FormEvent<HTMLFormElement>) {
@@ -20,7 +30,7 @@ export default function Search() {
 
 
   return (
-    <form className="w-1/5" onSubmit={e => buttonHandler(e)}>
+    <form style={{ width: `${width}px`, height: `${height}px` }} onSubmit={e => buttonHandler(e)}>
       <div className="flex mt-3">
         <div className="relative w-full">
           <input
