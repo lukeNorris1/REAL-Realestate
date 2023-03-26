@@ -114,17 +114,30 @@ export default function EstateDisplay() {
                 <div onClick={() => handleArrowClick("-")}>{"<"}</div>
                 {Array.from({ length: cityListLength }, (_, index) => {
                   return index < 4 ? (
-                    <div
-                      key={index}
-                      className="flex mx-1 mb-10 hover:cursor-pointer w-[20px] bg-black text-white justify-center items-align"
-                      onClick={() => setPageNum(index + 1)}
-                    >
-                      {pageNum == index + 1 ? (
-                        <div>{index + 1}</div>
-                      ) : (
-                        <>{index + 1}</>
-                      )}
-                    </div>
+                    pageNum == index + 1 ? (
+                      <div
+                        key={index}
+                        className="flex mx-1 mb-10 w-[20px] bg-blue-600 text-white  justify-center items-align"
+                      >
+                        {pageNum == index + 1 ? (
+                          <div>{index + 1}</div>
+                        ) : (
+                          <>{index + 1}</>
+                        )}
+                      </div>
+                    ) : (
+                      <div
+                        key={index}
+                        className="flex mx-1 mb-10 hover:cursor-pointer w-[20px] bg-black text-white justify-center items-align"
+                        onClick={() => setPageNum(index + 1)}
+                      >
+                        {pageNum == index + 1 ? (
+                          <div>{index + 1}</div>
+                        ) : (
+                          <>{index + 1}</>
+                        )}
+                      </div>
+                    )
                   ) : null;
                 })}
                 <div onClick={() => handleArrowClick("+")}>{">"}</div>
