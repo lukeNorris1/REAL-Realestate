@@ -7,7 +7,6 @@ type props = {
 
 const Slider = (props: props) => {
   const [currentImage, setCurrentImage] = useState(0);
-  console.log(props.totalImages)
 
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);

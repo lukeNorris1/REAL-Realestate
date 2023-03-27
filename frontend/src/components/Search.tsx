@@ -13,10 +13,6 @@ export default function Search(props: props) {
   const [height, setHeight] = useState(props.height || 50)
   const [width, setWidth] = useState(props.width || 500)
 
-
-  console.log(`height, ${height}, Width: ${width}`)
-
-
   function buttonHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (searchText != "") navigate("/search/" + searchText, { replace: true });

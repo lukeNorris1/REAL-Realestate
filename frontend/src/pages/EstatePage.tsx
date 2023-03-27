@@ -46,8 +46,8 @@ export default function EstatePage() {
       </div>
       <div className="flex justify-center">
         <div className="grid grid-cols-10 w-[1000px] ">
-          <div className="md:col-span-7 col-span-10 col-span-7 min-h-[400px]">
-            <div className="mx-4 mt-4">
+          <div className="md:col-span-7 col-span-10 col-start-2 col-end-9 min-h-[400px]">
+            <div className="mx-4 mt-4 ">
               <div>
                 <p className="text-lg font-bold">
                   {`$` + estate.cost + ` per week`}
@@ -78,7 +78,7 @@ export default function EstatePage() {
                 })}
               </div>
               <hr className="mx-auto my-2 border-t border-gray-300 w-[90%]" />
-              <div>
+              <div className="">
                 <h1 className="font-bold">Welcome to {estate.city}</h1>
                 <p className="mt-2">
                   Lorem Ipsum is simply dummy text of the printing and
@@ -113,7 +113,7 @@ export default function EstatePage() {
               </div>
             </div>
           </div>
-          <div className="md:col-span-3 col-span-10 bg-gray-200 min-h-[400px] min-h-[350px] ">
+        <div className="md:col-span-3 col-span-10 bg-gray-200 min-h-[400px] min-h-[350px] ">
             <div className="flex flex-col items-center">
             <p className="bg-blue-800 min-w-full text-xl text-white text-center py-2">
               Real Real Estate

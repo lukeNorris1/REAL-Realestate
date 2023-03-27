@@ -6,12 +6,16 @@ import Header from "../components/Header";
 export default function SearchPage() {
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Header/>
-      <div className="flex flex-col justify-center items-center">
-        <Search width={800}/>
+    <div className="w-full block bg-gray-100">
+      <div className="bg-white">
+        <div className="w-[1022px] mx-auto">
+          <Header/>
+        </div>
       </div>
-      <EstateDisplay/>
+        <div className="flex flex-col justify-center items-center">
+        <Search width={800}/>
+        <EstateDisplay/>
+      </div>
     </div>
   );
 }
