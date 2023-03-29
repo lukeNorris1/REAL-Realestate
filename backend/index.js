@@ -8,12 +8,10 @@ import mongoose from 'mongoose';
 import { fileURLToPath } from 'url';
 import { Server } from 'socket.io';
 
-
 // api functions and routes
 import userRoutes from './routes/users.js';
 import estateRoutes from './routes/estates.js';
 // import { tickers } from './web_sockets/tickers.js';
-
 // environment configuration
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
@@ -29,7 +27,18 @@ const io = new Server(server);
 // express.js configuration
 app.use(express.json({ extended: true }))
 app.use(express.urlencoded({ extended: true }))
-app.use(cors());
+
+app.use(cors({
+  origin: (origin, callback) => {
+      if ("https://realrs-api.onrender.com" !== -1 || !origin) {
+          callback(null, true)
+      } else {
+          callback(new Error('Not allowed by CORS'))
+      }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+}))
 
 
 
@@ -37,6 +46,8 @@ app.use(cors());
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
+
+
 app.use('/user', userRoutes);
 app.use('/estate', estateRoutes);
 

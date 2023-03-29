@@ -13,7 +13,7 @@ export default function EstateDisplay() {
   const cityListLength = Math.max(cityD?.length || 14, 14);
 
   const dev = process.env.NODE_ENV !== "production";
-  const server = dev ? "" : "https://your_deployment.server.com";
+  const server = dev ? "http://localhost:5000" : "https://realrs-api.onrender.com";
 
   const options = {
     method: `GET`,
@@ -25,7 +25,7 @@ export default function EstateDisplay() {
     const dataFetch = async () => {
       const data = await (
         await fetch(
-          `http://localhost:5000/estate/estateCity/?city=${urlParams.city}`,
+          `${server}/estate/estateCity/?city=${urlParams.city}`,
           options
         )
       ).json();

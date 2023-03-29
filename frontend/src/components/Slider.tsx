@@ -22,7 +22,7 @@ const Slider = (props: props) => {
   <div className="grid grid-cols-3">
     {props.totalImages != 1 ? (
     <>
-      <div className="col-span-1">
+      <div className="col-span-1" onClick={() => previousImage()}>
         <img
           src={images[currentImage === 0 ? images.length - 1 : currentImage - 1].src}
           alt={images[currentImage].alt}
@@ -50,7 +50,7 @@ const Slider = (props: props) => {
           </button>
         </div>
       </div>
-      <div className="col-span-1">
+      <div className="col-span-1" onClick={() => nextImage()}>
         <img 
           src={images[(currentImage + 1) % images.length].src}
           alt={images[currentImage].alt}
